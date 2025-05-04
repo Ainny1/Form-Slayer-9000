@@ -1,40 +1,41 @@
 # Form Slayer 9000
-*A Python-powered vulnerability scanner that interrogates web forms like a caffeine-charged detective.*  
-**[XSS] [SQLi] [Logs] [Justice]**
+*A Python-powered vulnerability scanner that interrogates web forms like a caffeine-fueled detective in a cyber-noir film.*  
+**[XSS] [SQLi] [Logs] [Justice] [Moral Ambiguity]**
 
 ---
 
 ## Meet Your Cyber Sleuth
 
-**Form Slayer 9000** isn’t just a scanner. It’s an overly enthusiastic, trenchcoat-wearing, espresso-slurping digital detective that kicks down the doors of your web forms and asks the hard questions:
+**Form Slayer 9000** isn’t just a tool.  
+It’s a trenchcoat-wearing, espresso-inhaling, form-interrogating **cyber vigilante** with trust issues and a knack for uncovering secrets.
 
-> “Are you vulnerable... punk?”
+> “Do you validate inputs... punk?”
 
-From sniffing out **XSS**, **SQL Injection**, and **leaky logs**, to documenting every move with the elegance of a noir thriller, Form Slayer 9000 is on a mission — and you're the captain of this chaos.
+Armed with payloads, puns, and paranoia, this scanner sniffs out **XSS**, **SQLi**, and **log-leaking nonsense** like it’s on a Netflix miniseries.
 
 ---
 
 ## Features
 
-- **XSS Detection** – "Drop that `<script>`, and nobody gets hurt."
-- **SQL Injection Tests** – Because `' OR '1'='1` never really went out of style.
-- **Logging** – Meticulous notes, like a detective with a diary.
-- **Interactive Terminal Prompts** – Because typing `--help` is too mainstream.
-- **Witty One-Liners (Optional, but encouraged)** – It *will* talk back.
+- **XSS Detection** – Drops `<script>` like mixtapes in 2003.
+- **SQL Injection Tests** – Old-school meets new-breach.
+- **Logging** – Every shady response, documented like a case file.
+- **Interactive Prompts** – Because pressing enter is more fun than `--help`.
+- **Sassy Commentary** – Optional, but honestly, why wouldn’t you?
 
 ---
 
-## Install Me, Baby
+## Install Me Like You Mean It
 
-1. Make sure Python 3.7+ is installed.
-2. Clone this caffeinated beast:
+1. Make sure Python 3.7+ is on your system — or go beg your sysadmin.
+2. Clone the scanner your firewall warned you about:
 
    ```bash
    git clone https://github.com/yourusername/form-slayer-9000.git
    cd form-slayer-9000
    ```
 
-3. Install dependencies:
+3. Inject the dependencies:
 
    ```bash
    pip install -r requirements.txt
@@ -42,83 +43,53 @@ From sniffing out **XSS**, **SQL Injection**, and **leaky logs**, to documenting
 
 ---
 
-## How To Use
+## How To Use (Now With 300% More Sass)
 
 ```bash
 python form_slayer.py --url https://your-target-url.com
 ```
 
-**Optional Flags:**
+**Optional Flavor Shots:**
 
-- `--xss` – Only scan for XSS
-- `--sqli` – Only scan for SQLi
-- `--log` – Save investigation logs to file
-- `--stealth-mode` – (Not really stealthy, but it sounds cool)
+- `--xss` – Focus only on XSS (and existential dread)
+- `--sqli` – Go full Injection-mode
+- `--log` – Save transcripts of the interrogation
+- `--stealth-mode` – Puts on sunglasses. Doesn’t actually help.
+- `--sass-mode` – Activates one-liners that roast insecure forms
 
-Example:
+**Example Run:**
 
 ```bash
-python form_slayer.py --url https://juice.shop --xss --log
+python form_slayer.py --url https://juice.shop --xss --log --sass-mode
 ```
 
 ---
 
 ## What It Says to the Forms
 
-Think of it like:
-
-- **Form Slayer**: "What happens if I give you `<script>alert('gotcha')</script>`?"
-- **Form**: "Uhh… I’ll just render it I guess?"
-- **Form Slayer**: *“Gotcha.”*
-
----
-
-## Warning
-
-- Do **not** run this on websites you don’t own or don’t have permission to test. Unless you like long walks in orange jumpsuits and explaining puns to a judge.
+> **Form Slayer**: “What happens if I give you this?”  
+> **Payload**: `<script>alert('Slayed')</script>`  
+> **Form**: “Oh no...”  
+> **Form Slayer**: *smirks* “Exactly.”
 
 ---
 
-## Coming Soon
+## payloads.py – The Arsenal of Absurdity
 
-- CSRF testing (because even forms get trust issues)
-- Dashboard for GUI-loving detectives
-- A dark mode... for darker investigations
-
----
-
-## Contribute
-
-Wanna join the squad? Open an issue, submit a PR, or drop a meme in the discussions. If your code is clean and your humor is cleaner, you’re in.
-
----
-
-## License
-
-MIT – Because even rebels play by *some* rules.
-
----
-
-## Final Words
-
-> “Form Slayer 9000 doesn’t sleep.  
-> It just loops through endpoints… waiting.”  
-
-**Happy hunting. Stay ethical. And drink water.**
-
-#Bonus idea! 
- 
+```python
 # payloads.py
+
 """
 Payloads of Mayhem - Form Slayer 9000's Favorite One-Liners
-These are not just strings — they're personality-loaded interrogations.
+Not just strings. These are existential threats in quotes.
 """
 
 xss_payloads = [
     "<script>alert('Slayed by Form Slayer 9000')</script>",
     "'><img src=x onerror=alert('XSS!')>",
     "<svg/onload=alert('XSS-press yourself')>",
-    "javascript:alert('XSS is a crime, but here we are.')"
+    "javascript:alert('XSS is a crime, but here we are.')",
+    "<iframe src='javascript:alert(`Sneaky iframe!`)'/>",
 ]
 
 sqli_payloads = [
@@ -126,7 +97,8 @@ sqli_payloads = [
     "'; DROP TABLE users; --",
     "' OR sleep(5) --",
     "' UNION SELECT NULL, version(), NULL --",
-    "\" OR \"\" = \""
+    "\" OR \"\" = \"",
+    "' OR 'life' = 'pain' --",
 ]
 
 def get_payloads():
@@ -143,14 +115,43 @@ if __name__ == "__main__":
         print(f"\n{category.upper()} Payloads:")
         for p in payloads:
             print(f"  - {p}")
-#How to Use in Your Tool:
-In your scanner, you could do something like:
-from payloads import get_payloads
+```
 
-payloads = get_payloads()
+---
 
-for p in payloads['xss']:
-    # send this to the form, wait for chaos
-    scan_form_with(p)
+## DO NOT BE EVIL
 
+- Seriously. Only test **your** sites or those you have **explicit permission** to test.
+- Unless orange jumpsuits and legal drama are your hobbies.
 
+---
+
+## Roadmap (a.k.a. The "To-Slay" List)
+
+- [ ] CSRF Detection – Because some forms just *trust* too easily.
+- [ ] GUI Dashboard – With knobs, toggles, and way too many graphs.
+- [ ] Dark Mode – Because every great noir story deserves shadows.
+- [ ] AI-powered sarcasm level – Adjustable sass slider? We’re thinking about it.
+
+---
+
+## Contribute Like a Legend
+
+Got puns? Payloads? A moral compass?  
+Open an issue, drop a PR, or slip a meme into the discussions.  
+If you code like a champ and joke like a villain, you’re hired. (Metaphorically.)
+
+---
+
+## License
+
+MIT – Because every rebel follows *some* rules.
+
+---
+
+## Last Words
+
+> “Form Slayer 9000 doesn’t have a bedtime.  
+> It has unfinished business... and a payload to prove it.”  
+
+**Happy hunting. And please, hydrate before you interrogate.**
