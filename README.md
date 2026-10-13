@@ -1,157 +1,50 @@
-# Form Slayer 9000
-*A Python-powered vulnerability scanner that interrogates web forms like a caffeine-fueled detective in a cyber-noir film.*  
-**[XSS] [SQLi] [Logs] [Justice] [Moral Ambiguity]**
+# 🕵️ Form Slayer 9000 — Passive HTML Form Audit
 
----
+A **working Python standard-library CLI** for reviewing HTML forms in **local files**. It inventories methods, actions, and fields and produces explainable review observations. **This is not an XSS or SQL-injection scanner**, does not send requests, and does not confirm vulnerabilities.
 
-## Meet Your Cyber Sleuth
+## 🧭 How it works
 
-**Form Slayer 9000** isn’t just a tool.  
-It’s a trenchcoat-wearing, espresso-inhaling, form-interrogating **cyber vigilante** with trust issues and a knack for uncovering secrets.
-
-> “Do you validate inputs... punk?”
-
-Armed with payloads, puns, and paranoia, this scanner sniffs out **XSS**, **SQLi**, and **log-leaking nonsense** like it’s on a Netflix miniseries.
-
----
-
-## Features
-
-- **XSS Detection** – Drops `<script>` like mixtapes in 2003.
-- **SQL Injection Tests** – Old-school meets new-breach.
-- **Logging** – Every shady response, documented like a case file.
-- **Interactive Prompts** – Because pressing enter is more fun than `--help`.
-- **Sassy Commentary** – Optional, but honestly, why wouldn’t you?
-
----
-
-## Install Me Like You Mean It
-
-1. Make sure Python 3.7+ is on your system — or go beg your sysadmin.
-2. Clone the scanner your firewall warned you about:
-
-   ```bash
-   git clone https://github.com/yourusername/form-slayer-9000.git
-   cd form-slayer-9000
-   ```
-
-3. Inject the dependencies:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
----
-
-## How To Use (Now With 300% More Sass)
-
-```bash
-python form_slayer.py --url https://your-target-url.com
+```mermaid
+flowchart LR
+  A["Local HTML file"] --> B["Python HTMLParser"]
+  B --> C["Form and field inventory"]
+  C --> D["Passive review observations"]
+  D --> E["JSON report"]
+  E --> F["Analyst validation"]
 ```
 
-**Optional Flavor Shots:**
+## ▶️ Run it on Windows
 
-- `--xss` – Focus only on XSS (and existential dread)
-- `--sqli` – Go full Injection-mode
-- `--log` – Save transcripts of the interrogation
-- `--stealth-mode` – Puts on sunglasses. Doesn’t actually help.
-- `--sass-mode` – Activates one-liners that roast insecure forms
+From the repository root, with Python 3.9+:
 
-**Example Run:**
-
-```bash
-python form_slayer.py --url https://juice.shop --xss --log --sass-mode
+```powershell
+py -3 form_slayer.py examples\fictional_form.html --output report.json
+Get-Content report.json
+py -3 -m unittest discover -s tests -v
 ```
 
----
+On Linux/macOS, replace `py -3` with `python3` and use `examples/fictional_form.html`.
 
-## What It Says to the Forms
+The example fixture is **fictional**, not a real website. The script reads local files only, uses no network, and requires no third-party packages.
 
-> **Form Slayer**: “What happens if I give you this?”  
-> **Payload**: `<script>alert('Slayed')</script>`  
-> **Form**: “Oh no...”  
-> **Form Slayer**: *smirks* “Exactly.”
+## 🔍 Current checks
 
----
+- Form method and action inventory.
+- Input, select, and textarea field names/types.
+- Review cue for a password field in a GET form.
+- Review cue for missing explicit form action.
+- Review cue for forms with no named fields.
 
-## payloads.py – The Arsenal of Absurdity
+These are **review prompts**, not confirmed vulnerabilities. The parser does not execute JavaScript, interpret browser DOM changes, validate server-side controls, or establish XSS/SQLi exploitability.
 
-```python
-# payloads.py
+## 🧪 Verification
 
-"""
-Payloads of Mayhem - Form Slayer 9000's Favorite One-Liners
-Not just strings. These are existential threats in quotes.
-"""
+Run the included unit tests and review the JSON generated from the fixture. A test suite passing demonstrates only the behavior covered by those tests; it is not a penetration test or a security guarantee.
 
-xss_payloads = [
-    "<script>alert('Slayed by Form Slayer 9000')</script>",
-    "'><img src=x onerror=alert('XSS!')>",
-    "<svg/onload=alert('XSS-press yourself')>",
-    "javascript:alert('XSS is a crime, but here we are.')",
-    "<iframe src='javascript:alert(`Sneaky iframe!`)'/>",
-]
+## 🔐 Scope and responsible use
 
-sqli_payloads = [
-    "' OR '1'='1' -- ",
-    "'; DROP TABLE users; --",
-    "' OR sleep(5) --",
-    "' UNION SELECT NULL, version(), NULL --",
-    "\" OR \"\" = \"",
-    "' OR 'life' = 'pain' --",
-]
+Inspect only files you own or are authorized to review. No active scanning, payload injection, external network connections, or collection of user credentials occurs.
 
-def get_payloads():
-    """Returns all the juicy payloads."""
-    return {
-        "xss": xss_payloads,
-        "sqli": sqli_payloads
-    }
+## 📌 Status
 
-if __name__ == "__main__":
-    print("Form Slayer 9000 - Payload Arsenal")
-    print("-" * 40)
-    for category, payloads in get_payloads().items():
-        print(f"\n{category.upper()} Payloads:")
-        for p in payloads:
-            print(f"  - {p}")
-```
-
----
-
-## DO NOT BE EVIL
-
-- Seriously. Only test **your** sites or those you have **explicit permission** to test.
-- Unless orange jumpsuits and legal drama are your hobbies.
-
----
-
-## Roadmap (a.k.a. The "To-Slay" List)
-
-- [ ] CSRF Detection – Because some forms just *trust* too easily.
-- [ ] GUI Dashboard – With knobs, toggles, and way too many graphs.
-- [ ] Dark Mode – Because every great noir story deserves shadows.
-- [ ] AI-powered sarcasm level – Adjustable sass slider? We’re thinking about it.
-
----
-
-## Contribute Like a Legend
-
-Got puns? Payloads? A moral compass?  
-Open an issue, drop a PR, or slip a meme into the discussions.  
-If you code like a champ and joke like a villain, you’re hired. (Metaphorically.)
-
----
-
-## License
-
-MIT – Because every rebel follows *some* rules.
-
----
-
-## Last Words
-
-> “Form Slayer 9000 doesn’t have a bedtime.  
-> It has unfinished business... and a payload to prove it.”  
-
-**Happy hunting. And please, hydrate before you interrogate.**
+**Implemented:** passive local HTML form inventory, JSON reporting, fictional fixture, unit tests. **Not implemented:** live website crawling, XSS/SQLi exploitation or verification, authentication analysis, or production-grade security scanning. Older README claims about those features were aspirational and have been corrected.
